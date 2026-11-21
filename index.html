@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WorldCoupon360 — Worldwide Daily Coupons, Promo Codes & Cashback Deals for Mobile Recharges, Broadband, UPI, Bank Payments, Flights, Food, Shopping, OTT, Sports, Hospitals & More." />
+  <title>WorldCoupon360 — Worldwide Daily Coupons, Cashback & Promo Codes</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #10b981;
+      --whatsapp: #25D366;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; }
+
+    /* Top Social Promo Bar */
+    .social-bar { background: #0f172a; color: #fff; padding: 0.5rem 1rem; text-align: center; font-size: 0.82rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; align-items: center; }
+    .social-pill { color: #fff; text-decoration: none; padding: 0.2rem 0.65rem; border-radius: 999px; font-weight: 600; font-size: 0.78rem; }
+    .pill-wa { background: #16a34a; }
+    .pill-ig { background: #db2777; }
+    .pill-fb { background: #2563eb; }
+
+    /* Header & Search */
+    header { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; padding: 2rem 1rem; text-align: center; }
+    header h1 { font-size: 2.1rem; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
+    header p { opacity: 0.92; font-size: 0.95rem; margin-bottom: 1.2rem; }
+    .live-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; margin-bottom: 0.8rem; }
+    .search-box { max-width: 640px; margin: 0 auto; display: flex; gap: 0.5rem; }
+    .search-box input { flex: 1; padding: 0.85rem 1rem; border: none; border-radius: 8px; font-size: 1rem; outline: none; }
+
+    /* Container */
+    .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+    /* AdSense Placeholder */
+    .ad-slot { background: #e2e8f0; border: 2px dashed #94a3b8; color: #475569; text-align: center; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.85rem; }
+
+    /* Category Pills */
+    .categories { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.75rem; margin-bottom: 1.5rem; scrollbar-width: thin; }
+    .cat-btn { background: var(--card); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 999px; cursor: pointer; white-space: nowrap; font-size: 0.88rem; font-weight: 500; transition: 0.2s; }
+    .cat-btn:hover, .cat-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    /* Deals Grid */
+    .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .deal-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.03); transition: transform 0.2s; }
+    .deal-card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.06); }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .brand { font-weight: 700; font-size: 1.05rem; color: var(--primary); }
+    .tag { font-size: 0.75rem; background: #fef3c7; color: #b45309; padding: 0.2rem 0.55rem; border-radius: 6px; font-weight: 600; }
+    .deal-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .deal-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+
+    /* Coupon & WhatsApp Buttons */
+    .coupon-action { display: flex; gap: 0.5rem; align-items: center; }
+    .code-box { flex: 1; background: #f1f5f9; border: 1px dashed var(--primary); padding: 0.5rem; text-align: center; font-family: monospace; font-weight: 700; border-radius: 6px; font-size: 0.95rem; }
+    .copy-btn { background: var(--accent); color: #fff; border: none; padding: 0.55rem 0.9rem; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+    .copy-btn:hover { opacity: 0.9; }
+    .wa-btn { margin-top: 0.6rem; width: 100%; background: var(--whatsapp); color: #fff; border: none; padding: 0.48rem; border-radius: 6px; font-weight: 600; font-size: 0.82rem; cursor: pointer; }
+    .wa-btn:hover { opacity: 0.92; }
+
+    /* SEO & Saving Tips Section (Helps with AdSense Approval) */
+    .seo-section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-top: 2.5rem; }
+    .seo-section h2 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .seo-section p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
+
+    /* Footer */
+    footer { background: #0f172a; color: #cbd5e1; text-align: center; padding: 2rem 1rem; margin-top: 3rem; font-size: 0.85rem; }
+    footer a { color: #60a5fa; text-decoration: none; margin: 0 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Viral Community Bar -->
+  <div class="social-bar">
+    <span>📲 Get Instant Daily Loot Alerts on WorldCoupon360:</span>
+    <a href="#whatsapp-channel" target="_blank" class="social-pill pill-wa">Join WhatsApp Channel</a>
+    <a href="#instagram-page" target="_blank" class="social-pill pill-ig">Follow on Instagram</a>
+    <a href="#facebook-page" target="_blank" class="social-pill pill-fb">Join Facebook Group</a>
+  </div>
+
+  <header>
+    <div class="live-badge" id="daily-status">🔥 Daily Verified Deals Updated</div>
+    <h1>WorldCoupon360</h1>
+    <p>Worldwide Coupons & Cashback for Mobile Recharges, Broadband, UPI, Banks, Travel, Food, Shopping, Sports & More</p>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search Recharge, Broadband, Wi-Fi, UPI, Swiggy, Flights, Amazon, Cricket..." />
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Top Google AdSense Banner Slot -->
+    <div class="ad-slot">
+      [Google AdSense Responsive Banner Slot — Paste your AdSense &lt;ins&gt; code here]
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="categories" id="categoryBar">
+      <button class="cat-btn active" data-cat="All">All Deals</button>
+      <button class="cat-btn" data-cat="Telecom">Mobile Recharge & Broadband</button>
+      <button class="cat-btn" data-cat="Payments">Bank, UPI & Transfers</button>
+      <button class="cat-btn" data-cat="Travel">Flights, Trains & Cabs</button>
+      <button class="cat-btn" data-cat="Food">Food, Groceries & Pubs</button>
+      <button class="cat-btn" data-cat="Shopping">Amazon, Flipkart & Malls</button>
+      <button class="cat-btn" data-cat="Entertainment">OTT, Movies & Match Tickets</button>
+      <button class="cat-btn" data-cat="Health">Hospitals & Medical</button>
+      <button class="cat-btn" data-cat="Auto">Fuel & Vehicle Parts</button>
+      <button class="cat-btn" data-cat="Finance">Stocks & Visas</button>
+    </div>
+
+    <!-- Deals Grid -->
+    <div class="deals-grid" id="dealsGrid"></div>
+
+    <!-- Mid-Page AdSense Slot -->
+    <div class="ad-slot" style="margin-top: 2rem;">
+      [Google AdSense In-Feed Ad Slot — Monetize worldwide traffic]
+    </div>
+
+    <!-- Original Content for SEO & AdSense Compliance -->
+    <section class="seo-section">
+      <h2>How to Maximize Savings Worldwide with WorldCoupon360</h2>
+      <p><strong>1. Save on Monthly Recharges, Broadband & Bills:</strong> Never pay full price on prepaid mobile recharges, postpaid plans, DTH, or high-speed fiber broadband renewals. Apply verified UPI and wallet cashback codes before paying.</p>
+      <p><strong>2. Stack Bank & Travel Offers:</strong> Combine merchant promo codes on platforms like Amazon, Flipkart, or airline portals with instant bank card or international transfer fee waivers.</p>
+      <p><strong>3. Share & Earn via WhatsApp & Social Channels:</strong> Bookmark WorldCoupon360 or tap "Share on WhatsApp" on any coupon card to send verified discounts for food delivery, live sports match tickets, and healthcare checkups to friends and family.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> WorldCoupon360. All Rights Reserved.</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="#about">About Us</a> |
+      <a href="#privacy">Privacy Policy</a> |
+      <a href="#disclosure">Affiliate Disclosure</a> |
+      <a href="#contact">Contact</a>
+    </p>
+  </footer>
+
+  <script>
+    // 1. Auto-update date badge & footer year daily
+    const today = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' });
+    document.getElementById('daily-status').textContent = `🔥 Verified Deals Updated: ${today}`;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 2. Built-in Global Deals Database (Backup + Instant Load)
+    const dealsData = [
+      { brand: "Mobile Recharge & DTH", category: "Telecom", tag: "Instant", title: "Up to ₹100 Cashback on Prepaid & Postpaid Recharges", desc: "Valid on Jio, Airtel, Vi, BSNL & global mobile top-ups via UPI or cards.", code: "RECHARGE100", link: "#" },
+      { brand: "Fiber Broadband & Wi-Fi", category: "Telecom", tag: "Hot Deal", title: "Free Router + 1 Month Extra on Broadband Plans", desc: "Applicable on new fiber Wi-Fi connections and quarterly/annual bill renewals.", code: "FIBERFREE", link: "#" },
+      { brand: "UPI & Bank Pay", category: "Payments", tag: "Trending", title: "Flat ₹150 Cashback on Utility & EMI Payments", desc: "Applicable on electricity, water, gas, credit card bills & loan EMIs via UPI.", code: "PAYBILL150", link: "#" },
+      { brand: "Wise / Remit", category: "Payments", tag: "Global", title: "Zero Transfer Fee on International Money Transfers", desc: "Send money worldwide with real exchange rates on your first transfer.", code: "GLOBALFREE", link: "#" },
+      { brand: "SkyFlights", category: "Travel", tag: "Hot Deal", title: "Up to 18% Off Domestic & International Flights", desc: "Valid on round-trip flight bookings with major global airlines.", code: "FLYHIGH18", link: "#" },
+      { brand: "Uber / Ola / Rapido", category: "Travel", tag: "Daily", title: "50% Off Your Next 3 Bike, Auto or Cab Rides", desc: "Instant discount on city commutes and airport transfers.", code: "RIDE50NOW", link: "#" },
+      { brand: "Train & Bus Pass", category: "Travel", tag: "Verified", title: "Zero Convenience Fee on Train & AC Bus Tickets", desc: "Save on intercity bus and railway reservations worldwide.", code: "RAILBUS0", link: "#" },
+      { brand: "Swiggy & Zomato", category: "Food", tag: "Trending", title: "Flat 60% Off Food Delivery + Free Delivery", desc: "Valid on restaurants, late-night cravings, and birthday party orders.", code: "FEAST60", link: "#" },
+      { brand: "Blinkit / QuickMart", category: "Food", tag: "10-Min", title: "₹200 Off Monthly Groceries & Beverages", desc: "Minimum order ₹999 on fresh fruits, snacks, and soft drinks.", code: "GROCER200", link: "#" },
+      { brand: "City Pubs & Dining", category: "Food", tag: "Weekend", title: "Buy 1 Get 1 Free on Drinks & Dining Buffets", desc: "Pre-book tables at partner pubs, lounges, and family restaurants.", code: "CHEERSB1G1", link: "#" },
+      { brand: "Amazon & Prime", category: "Shopping", tag: "Global", title: "Up to 40% Off Electronics + Free Prime Trial", desc: "Extra 10% instant discount with partner bank debit/credit cards.", code: "PRIME40", link: "#" },
+      { brand: "Flipkart & Myntra", category: "Shopping", tag: "Fashion", title: "Extra ₹500 Off Lifestyle, Apparel & Mall Vouchers", desc: "Redeemable online and at partner retail shopping malls.", code: "STYLE500", link: "#" },
+      { brand: "Live Sports Arena", category: "Entertainment", tag: "Stadium", title: "15% Off Cricket, Football, Rugby & Hockey Tickets", desc: "Early-bird discount on match passes, volleyball & horse racing events.", code: "MATCHDAY15", link: "#" },
+      { brand: "Cinema & OTT Bundle", category: "Entertainment", tag: "BOGO", title: "Buy 1 Get 1 Movie Ticket + 3 Months OTT Access", desc: "Valid on weekend cinema shows and annual streaming subscriptions.", code: "STREAMBOGO", link: "#" },
+      { brand: "HealthCare Plus", category: "Health", tag: "Essential", title: "Up to 45% Off Full-Body Checkups & Hospital Bills", desc: "Includes pharmacy medicine delivery, dental, and lab diagnostics.", code: "CARE45", link: "#" },
+      { brand: "Fuel & AutoParts", category: "Auto", tag: "Save", title: "5% Cashback at Fuel Stations + 20% Off Car/Bike Parts", desc: "Valid on petrol/diesel rewards and genuine vehicle spare parts.", code: "DRIVE20", link: "#" },
+      { brand: "Global Visa & Hotels", category: "Finance", tag: "Travel", title: "25% Off Hotel Bookings & Visa Processing Fees", desc: "Book international hotels and tourist visas with instant confirmation.", code: "STAYVISA25", link: "#" },
+      { brand: "ZeroBrokerage Stocks", category: "Finance", tag: "Invest", title: "Free Demat Account + ₹500 Brokerage Credit", desc: "Start investing in global stock markets and ETFs with zero AMC.", code: "TRADE500", link: "#" }
+];
+const grid = document.getElementById('dealsGrid');
+const searchInput = document.getElementById('searchInput');
+const catButtons = document.querySelectorAll('.cat-btn');
+let activeCategory = 'All';
+// 3. Render Deal Cards with Copy + WhatsApp Share Buttons
+function renderDeals() {
+const query = searchInput.value.toLowerCase();
+grid.innerHTML = '';
+const filtered = dealsData.filter(deal => {
+const matchesCat = activeCategory === 'All' || deal.category === activeCategory;
+const matchesSearch = deal.brand.toLowerCase().includes(query) ||
+deal.title.toLowerCase().includes(query) ||
+deal.desc.toLowerCase().includes(query) ||
+deal.category.toLowerCase().includes(query);
+return matchesCat && matchesSearch;
+});
+if (filtered.length === 0) {
+grid.innerHTML = 'No matching coupons found. Try another keyword!';
+return;
+}
+filtered.forEach(deal => {
+const card = document.createElement('div');
+card.className = 'deal-card';
+card.innerHTML = <div> <div class="card-top"> <span class="brand">${deal.brand}</span> <span class="tag">${deal.tag}</span> </div> <div class="deal-title">${deal.title}</div> <p class="deal-desc">${deal.desc}</p> </div> <div> <div class="coupon-action"> <div class="code-box">${deal.code}</div> <button class="copy-btn" onclick="copyCode(this, '${deal.code}', '${deal.link}')">Copy</button> </div> <button class="wa-btn" onclick="shareOnWhatsApp('${deal.brand.replace(/'/g, "\\'")}', '${deal.title.replace(/'/g, "\\'")}', '${deal.code}')"> 📲 Share on WhatsApp </button> </div>;
+grid.appendChild(card);
+});
+}
+// 4. Copy Code & Open Affiliate Link
+function copyCode(btn, code, link) {
+navigator.clipboard.writeText(code);
+btn.textContent = 'Copied!';
+btn.style.background = '#1d4ed8';
+setTimeout(() => {
+btn.textContent = 'Copy';
+btn.style.background = '#10b981';
+}, 2000);
+if (link && link !== '#') {
+window.open(link, '_blank');
+}
+}
+// 5. Viral WhatsApp Sharing
+function shareOnWhatsApp(brand, title, code) {
+const siteUrl = window.location.href;
+const message = 🔥 *${brand} Deal on WorldCoupon360!* ${title}\n🎟️ Use Code: *${code}*\n👉 Grab more daily deals: ${siteUrl};
+window.open(https://whatsapp.com{encodeURIComponent(message)}, "_blank");
+}
+// 6. Auto-Update Daily Coupons from Google Sheets CSV
+// Sheet Columns in Row 1: brand | category | tag | title | desc | code | link
+const GOOGLE_SHEET_CSV_URL = "PASTE_YOUR_PUBLISHED_GOOGLE_SHEET_CSV_LINK_HERE";
+async function loadLiveSheetDeals() {
+if (!GOOGLE_SHEET_CSV_URL.startsWith("http")) return;
+try {
+const res = await fetch(GOOGLE_SHEET_CSV_URL);
+const csvText = await res.text();
+const rows = csvText.split("\n").slice(1);
+const liveDeals = rows
+.map(row => {
+const cols = row.match(/(".?"|[^",\s]+)(?=\s,|\s*$)/g) || [];
+const clean = cols.map(c => c.replace(/^"|"$/g, "").trim());
+if (clean.length < 6) return null;
+return {
+brand: clean[0],
+category: clean[1],
+tag: clean[2],
+title: clean[3],
+desc: clean[4],
+code: clean[5],
+link: clean[6] || "#"
+};
+})
+.filter(Boolean);
+if (liveDeals.length > 0) {
+dealsData.unshift(...liveDeals);
+renderDeals();
+}
+} catch (err) {
+console.log("Using built-in deals:", err);
+}
+}
+// Category & Search Listeners
+catButtons.forEach(btn => {
+btn.addEventListener('click', () => {
+catButtons.forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+activeCategory = btn.dataset.cat;
+renderDeals();
+});
+});
+searchInput.addEventListener('input', renderDeals);
+// Initialize Website
+renderDeals();
+loadLiveSheetDeals();
+</script>
+</body>
+</html>
