@@ -64,7 +64,7 @@
     .wa-btn { margin-top: 0.6rem; width: 100%; background: var(--whatsapp); color: #fff; border: none; padding: 0.48rem; border-radius: 6px; font-weight: 600; font-size: 0.82rem; cursor: pointer; }
     .wa-btn:hover { opacity: 0.92; }
 
-    /* SEO & Saving Tips Section (Helps with AdSense Approval) */
+    /* SEO & Saving Tips Section */
     .seo-section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-top: 2.5rem; }
     .seo-section h2 { font-size: 1.25rem; margin-bottom: 0.75rem; }
     .seo-section p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
@@ -146,41 +146,42 @@
     document.getElementById('daily-status').textContent = `🔥 Verified Deals Updated: ${today}`;
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 2. Built-in Global Deals Database (Backup + Instant Load)
+    // 2. Built-in Global Deals Database
     const dealsData = [
       { brand: "Mobile Recharge & DTH", category: "Telecom", tag: "Instant", title: "Up to ₹100 Cashback on Prepaid & Postpaid Recharges", desc: "Valid on Jio, Airtel, Vi, BSNL & global mobile top-ups via UPI or cards.", code: "RECHARGE100", link: "#" },
       { brand: "Fiber Broadband & Wi-Fi", category: "Telecom", tag: "Hot Deal", title: "Free Router + 1 Month Extra on Broadband Plans", desc: "Applicable on new fiber Wi-Fi connections and quarterly/annual bill renewals.", code: "FIBERFREE", link: "#" },
       { brand: "UPI & Bank Pay", category: "Payments", tag: "Trending", title: "Flat ₹150 Cashback on Utility & EMI Payments", desc: "Applicable on electricity, water, gas, credit card bills & loan EMIs via UPI.", code: "PAYBILL150", link: "#" },
       { brand: "Wise / Remit", category: "Payments", tag: "Global", title: "Zero Transfer Fee on International Money Transfers", desc: "Send money worldwide with real exchange rates on your first transfer.", code: "GLOBALFREE", link: "#" },
-      { brand: "SkyFlights", category: "Travel", tag: "Hot Deal", title: "Up to 18% Off Domestic & International Flights", desc: "Valid on round-trip flight bookings with major global airlines.", code: "FLYHIGH18", link: "#" },
-      { brand: "Uber / Ola / Rapido", category: "Travel", tag: "Daily", title: "50% Off Your Next 3 Bike, Auto or Cab Rides", desc: "Instant discount on city commutes and airport transfers.", code: "RIDE50NOW", link: "#" },
-      { brand: "Train & Bus Pass", category: "Travel", tag: "Verified", title: "Zero Convenience Fee on Train & AC Bus Tickets", desc: "Save on intercity bus and railway reservations worldwide.", code: "RAILBUS0", link: "#" },
-      { brand: "Swiggy & Zomato", category: "Food", tag: "Trending", title: "Flat 60% Off Food Delivery + Free Delivery", desc: "Valid on restaurants, late-night cravings, and birthday party orders.", code: "FEAST60", link: "#" },
-      { brand: "Blinkit / QuickMart", category: "Food", tag: "10-Min", title: "₹200 Off Monthly Groceries & Beverages", desc: "Minimum order ₹999 on fresh fruits, snacks, and soft drinks.", code: "GROCER200", link: "#" },
-      { brand: "City Pubs & Dining", category: "Food", tag: "Weekend", title: "Buy 1 Get 1 Free on Drinks & Dining Buffets", desc: "Pre-book tables at partner pubs, lounges, and family restaurants.", code: "CHEERSB1G1", link: "#" },
-      { brand: "Amazon & Prime", category: "Shopping", tag: "Global", title: "Up to 40% Off Electronics + Free Prime Trial", desc: "Extra 10% instant discount with partner bank debit/credit cards.", code: "PRIME40", link: "#" },
-      { brand: "Flipkart & Myntra", category: "Shopping", tag: "Fashion", title: "Extra ₹500 Off Lifestyle, Apparel & Mall Vouchers", desc: "Redeemable online and at partner retail shopping malls.", code: "STYLE500", link: "#" },
-      { brand: "Live Sports Arena", category: "Entertainment", tag: "Stadium", title: "15% Off Cricket, Football, Rugby & Hockey Tickets", desc: "Early-bird discount on match passes, volleyball & horse racing events.", code: "MATCHDAY15", link: "#" },
-      { brand: "Cinema & OTT Bundle", category: "Entertainment", tag: "BOGO", title: "Buy 1 Get 1 Movie Ticket + 3 Months OTT Access", desc: "Valid on weekend cinema shows and annual streaming subscriptions.", code: "STREAMBOGO", link: "#" },
-      { brand: "HealthCare Plus", category: "Health", tag: "Essential", title: "Up to 45% Off Full-Body Checkups & Hospital Bills", desc: "Includes pharmacy medicine delivery, dental, and lab diagnostics.", code: "CARE45", link: "#" },
-      { brand: "Fuel & AutoParts", category: "Auto", tag: "Save", title: "5% Cashback at Fuel Stations + 20% Off Car/Bike Parts", desc: "Valid on petrol/diesel rewards and genuine vehicle spare parts.", code: "DRIVE20", link: "#" },
-      { brand: "Global Visa & Hotels", category: "Finance", tag: "Travel", title: "25% Off Hotel Bookings & Visa Processing Fees", desc: "Book international hotels and tourist visas with instant confirmation.", code: "STAYVISA25", link: "#" },
-      { brand: "ZeroBrokerage Stocks", category: "Finance", tag: "Invest", title: "Free Demat Account + ₹500 Brokerage Credit", desc: "Start investing in global stock markets and ETFs with zero AMC.", code: "TRADE500", link: "#" }
+{ brand: "SkyFlights", category: "Travel", tag: "Hot Deal", title: "Up to 18% Off Domestic & International Flights", desc: "Valid on round-trip flight bookings with major global airlines.", code: "FLYHIGH18", link: "#" },
+{ brand: "Uber / Ola / Rapido", category: "Travel", tag: "Daily", title: "50% Off Your Next 3 Bike, Auto or Cab Rides", desc: "Instant discount on city commutes and airport transfers.", code: "RIDE50NOW", link: "#" },
+{ brand: "Train & Bus Pass", category: "Travel", tag: "Verified", title: "Zero Convenience Fee on Train & AC Bus Tickets", desc: "Save on intercity bus and railway reservations worldwide.", code: "RAILBUS0", link: "#" },
+{ brand: "Swiggy & Zomato", category: "Food", tag: "Trending", title: "Flat 60% Off Food Delivery + Free Delivery", desc: "Valid on restaurants, late-night cravings, and birthday party orders.", code: "FEAST60", link: "#" },
+{ brand: "Blinkit / QuickMart", category: "Food", tag: "10-Min", title: "₹200 Off Monthly Groceries & Beverages", desc: "Minimum order ₹999 on fresh fruits, snacks, and soft drinks.", code: "GROCER200", link: "#" },
+{ brand: "City Pubs & Dining", category: "Food", tag: "Weekend", title: "Buy 1 Get 1 Free on Drinks & Dining Buffets", desc: "Pre-book tables at partner pubs, lounges, and family restaurants.", code: "CHEERSB1G1", link: "#" },
+{ brand: "Amazon & Prime", category: "Shopping", tag: "Global", title: "Up to 40% Off Electronics + Free Prime Trial", desc: "Extra 10% instant discount with partner bank debit/credit cards.", code: "PRIME40", link: "#" },
+{ brand: "Flipkart & Myntra", category: "Shopping", tag: "Fashion", title: "Extra ₹500 Off Lifestyle, Apparel & Mall Vouchers", desc: "Redeemable online and at partner retail shopping malls.", code: "STYLE500", link: "#" },
+{ brand: "Live Sports Arena", category: "Entertainment", tag: "Stadium", title: "15% Off Cricket, Football, Rugby & Hockey Tickets", desc: "Early-bird discount on match passes, volleyball & horse racing events.", code: "MATCHDAY15", link: "#" },
+{ brand: "Cinema & OTT Bundle", category: "Entertainment", tag: "BOGO", title: "Buy 1 Get 1 Movie Ticket + 3 Months OTT Access", desc: "Valid on weekend cinema shows and annual streaming subscriptions.", code: "STREAMBOGO", link: "#" },
+{ brand: "HealthCare Plus", category: "Health", tag: "Essential", title: "Up to 45% Off Full-Body Checkups & Hospital Bills", desc: "Includes pharmacy medicine delivery, dental, and lab diagnostics.", code: "CARE45", link: "#" },
+{ brand: "Fuel & AutoParts", category: "Auto", tag: "Save", title: "5% Cashback at Fuel Stations + 20% Off Car/Bike Parts", desc: "Valid on petrol/diesel rewards and genuine vehicle spare parts.", code: "DRIVE20", link: "#" },
+{ brand: "Global Visa & Hotels", category: "Finance", tag: "Travel", title: "25% Off Hotel Bookings & Visa Processing Fees", desc: "Book international hotels and tourist visas with instant confirmation.", code: "STAYVISA25", link: "#" },
+{ brand: "ZeroBrokerage Stocks", category: "Finance", tag: "Invest", title: "Free Demat Account + ₹500 Brokerage Credit", desc: "Start investing in global stock markets and ETFs with zero AMC.", code: "TRADE500", link: "#" }
 ];
 const grid = document.getElementById('dealsGrid');
 const searchInput = document.getElementById('searchInput');
 const catButtons = document.querySelectorAll('.cat-btn');
 let activeCategory = 'All';
-// 3. Render Deal Cards with Copy + WhatsApp Share Buttons
+// 3. Render Deal Cards Safely
 function renderDeals() {
 const query = searchInput.value.toLowerCase();
 grid.innerHTML = '';
 const filtered = dealsData.filter(deal => {
+if (!deal || typeof deal.brand !== 'string') return false;
 const matchesCat = activeCategory === 'All' || deal.category === activeCategory;
 const matchesSearch = deal.brand.toLowerCase().includes(query) ||
-deal.title.toLowerCase().includes(query) ||
-deal.desc.toLowerCase().includes(query) ||
-deal.category.toLowerCase().includes(query);
+(deal.title || '').toLowerCase().includes(query) ||
+(deal.desc || '').toLowerCase().includes(query) ||
+(deal.category || '').toLowerCase().includes(query);
 return matchesCat && matchesSearch;
 });
 if (filtered.length === 0) {
@@ -190,7 +191,7 @@ return;
 filtered.forEach(deal => {
 const card = document.createElement('div');
 card.className = 'deal-card';
-card.innerHTML = <div> <div class="card-top"> <span class="brand">${deal.brand}</span> <span class="tag">${deal.tag}</span> </div> <div class="deal-title">${deal.title}</div> <p class="deal-desc">${deal.desc}</p> </div> <div> <div class="coupon-action"> <div class="code-box">${deal.code}</div> <button class="copy-btn" onclick="copyCode(this, '${deal.code}', '${deal.link}')">Copy</button> </div> <button class="wa-btn" onclick="shareOnWhatsApp('${deal.brand.replace(/'/g, "\\'")}', '${deal.title.replace(/'/g, "\\'")}', '${deal.code}')"> 📲 Share on WhatsApp </button> </div>;
+card.innerHTML = <div> <div class="card-top"> <span class="brand">${deal.brand}</span> <span class="tag">${deal.tag || 'Deal'}</span> </div> <div class="deal-title">${deal.title}</div> <p class="deal-desc">${deal.desc}</p> </div> <div> <div class="coupon-action"> <div class="code-box">${deal.code}</div> <button class="copy-btn" onclick="copyCode(this, '${deal.code}', '${deal.link}')">Copy</button> </div> <button class="wa-btn" onclick="shareOnWhatsApp('${deal.brand.replace(/'/g, "\\'")}', '${deal.title.replace(/'/g, "\\'")}', '${deal.code}')"> 📲 Share on WhatsApp </button> </div>;
 grid.appendChild(card);
 });
 }
@@ -214,25 +215,26 @@ const message = 🔥 *${brand} Deal on WorldCoupon360!* ${title}\n🎟️ Use Co
 window.open(https://whatsapp.com{encodeURIComponent(message)}, "_blank");
 }
 // 6. Auto-Update Daily Coupons from Google Sheets CSV
-// Sheet Columns in Row 1: brand | category | tag | title | desc | code | link
+// Must be a "Publish to web" CSV URL ending in output=csv
 const GOOGLE_SHEET_CSV_URL = "PASTE_YOUR_PUBLISHED_GOOGLE_SHEET_CSV_LINK_HERE";
 async function loadLiveSheetDeals() {
 if (!GOOGLE_SHEET_CSV_URL.startsWith("http")) return;
 try {
 const res = await fetch(GOOGLE_SHEET_CSV_URL);
 const csvText = await res.text();
-const rows = csvText.split("\n").slice(1);
+if (csvText.trim().startsWith("<!DOCTYPE") || csvText.trim().startsWith("<html")) return;
+const rows = csvText.split(/\r?\n/).slice(1);
 const liveDeals = rows
 .map(row => {
-const cols = row.match(/(".?"|[^",\s]+)(?=\s,|\s*$)/g) || [];
+const cols = row.match(/(".?"|[^",]+)(?=\s,|\s*$)/g) || [];
 const clean = cols.map(c => c.replace(/^"|"$/g, "").trim());
-if (clean.length < 6) return null;
+if (clean.length < 6 || !clean[0] || !clean[5]) return null;
 return {
 brand: clean[0],
-category: clean[1],
-tag: clean[2],
-title: clean[3],
-desc: clean[4],
+category: clean[1] || "All",
+tag: clean[2] || "New",
+title: clean[3] || "",
+desc: clean[4] || "",
 code: clean[5],
 link: clean[6] || "#"
 };
