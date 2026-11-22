@@ -174,7 +174,7 @@ document.getElementById('dealGrid').innerHTML=list.map(d=>`
 </div>
 <div class="px-4 pb-4"><h3 class="font-bold text-[15px] leading-snug">${d.title}</h3><p class="text-[13px] text-gray-500 mt-1">${d.desc}</p><p class="text-[11px] text-red-500 font-bold mt-1">⏰ ${d.expiry} • 👥 ${d.popular}k used today</p>
 <div class="flex gap-2 mt-3"><div class="flex-1 border-2 border-dashed border-gray-300 rounded-lg px-2 py-2 text-center font-black tracking-widest text-sm bg-gray-50">${d.code}</div><button onclick="copyCode('${d.code}','${d.store}')" class="bg-black text-white px-4 rounded-lg font-bold text-sm">Copy</button></div>
-<a href="https://www.google.com/search?q=${encodeURIComponent(d.store+' coupon code '+d.code)}" target="_blank" class="block text-center bg-orange-600 text-white py-2.5 rounded-lg font-bold text-sm mt-2">Get This Deal →</a>
+<a href="${d.link||'https://www.google.com/search?q='+encodeURIComponent(d.store+' coupon code '+d.code)}" target="_blank"class="block text-center bg-orange-600 text-white py-2.5 rounded-lg font-bold text-sm mt-2">Get This Deal →</a>
 </div></div>`).join('');
 }
 renderCats();render();
