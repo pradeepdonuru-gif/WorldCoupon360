@@ -3,36 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WorldCoupon360 - Amazon Style Shopping + All Coupons in One Place</title>
-<meta name="description" content="Amazon style shopping - Geyser, Kettle, Fan + All coupons Jio, Airtel, Swiggy, Amazon, Flipkart in one place.">
+<title>WorldCoupon360 - Shop Like Amazon + All Coupons</title>
+<meta name="description" content="Shop Home Appliances + All Coupons Jio, Swiggy, Amazon, Flipkart in one place. Login, Pay Online via Razorpay.">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 *{font-family:Arial,Helvetica,sans-serif}
-.amazon-header{background:#131921}
-.amazon-sub{background:#232F3E}
-.card:hover{box-shadow:0 8px 25px rgba(0,0,0,.15);transform:translateY(-2px)}
-.card{transition:.2s}
+.amazon-header{background:#131921}.amazon-sub{background:#232F3E}
+.card{transition:.2s}.card:hover{box-shadow:0 8px 25px rgba(0,0,0,.15);transform:translateY(-2px)}
 .no-scrollbar::-webkit-scrollbar{display:none}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#131921;color:#fff;padding:12px 22px;border-radius:999px;z-index:999;display:none;font-size:14px;font-weight:bold}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
+.modal.open{display:flex}
 </style>
 </head>
 <body class="bg-[#EAEDED]">
 
-<!-- AMAZON STYLE HEADER -->
+<!-- HEADER -->
 <header class="amazon-header text-white sticky top-0 z-50">
 <div class="max-w-7xl mx-auto px-3 py-2 flex items-center gap-2 md:gap-4">
 <a href="#" class="font-black text-lg md:text-2xl whitespace-nowrap">World<span class="text-[#FF9900]">Coupon</span>360<span class="text-xs align-top">.in</span></a>
 <div class="hidden md:block text-xs leading-tight"><p class="text-gray-300">Deliver to</p><p class="font-bold">📍 Hyderabad 500001</p></div>
 <div class="flex flex-1 bg-white rounded-md overflow-hidden h-11">
-<select id="searchCat" class="bg-gray-100 text-black text-xs px-2 hidden sm:block border-r"><option>All</option><option>Appliances</option><option>Coupons</option><option>Recharge</option></select>
+<select class="bg-gray-100 text-black text-xs px-2 hidden sm:block border-r"><option>All</option><option>Appliances</option><option>Coupons</option></select>
 <input id="searchInput" oninput="renderAll()" placeholder="Search Geyser, Kettle, Jio, Swiggy, Amazon..." class="flex-1 px-3 text-black outline-none text-sm">
 <button onclick="renderAll()" class="bg-[#FF9900] px-4 text-black text-xl">🔍</button>
 </div>
-<div class="hidden md:block text-xs leading-tight"><p>Hello, Sign in</p><p class="font-bold">Account</p></div>
+<button onclick="openLogin()" class="hidden md:block text-xs leading-tight text-left"><p>Hello, <span id="helloUser">Sign in</span></p><p class="font-bold">Account & Lists ▼</p></button>
+<button onclick="openLogin()" class="md:hidden text-xs font-bold bg-white text-black px-3 py-2 rounded-full">Login</button>
 <div class="hidden md:block text-xs leading-tight"><p>Returns</p><p class="font-bold">& Orders</p></div>
 <button onclick="openCart()" class="relative font-bold text-lg whitespace-nowrap">🛒 Cart <span id="cartCount" class="absolute -top-2 -right-1 bg-[#FF9900] text-black text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span></button>
 </div>
-<!-- SUB NAV LIKE AMAZON -->
 <div class="amazon-sub text-white text-[13px] flex gap-4 overflow-x-auto no-scrollbar px-3 py-2 max-w-7xl mx-auto">
 <button onclick="setCat('All')" class="font-bold whitespace-nowrap">☰ All</button>
 <button onclick="setCat('Appliances')" class="whitespace-nowrap">Home Appliances</button>
@@ -40,20 +40,21 @@
 <button onclick="setCat('Food & Groceries')" class="whitespace-nowrap">Food</button>
 <button onclick="setCat('Travel & Flights')" class="whitespace-nowrap">Travel</button>
 <button onclick="setCat('Shopping & Malls')" class="whitespace-nowrap">Shopping</button>
-<button onclick="setCat('Bank & UPI')" class="whitespace-nowrap">Bank Offers</button>
-<span class="ml-auto hidden md:block font-bold text-[#FF9900] whitespace-nowrap">🔥 Great Indian Festival - Up to 80% OFF</span>
+<button onclick="scrollToId('about')" class="whitespace-nowrap">About</button>
+<button onclick="scrollToId('contact')" class="whitespace-nowrap">Contact</button>
+<span class="ml-auto hidden md:block font-bold text-[#FF9900] whitespace-nowrap">🔥 Up to 80% OFF</span>
 </div>
 </header>
 
-<!-- HERO LIKE AMAZON -->
+<!-- HERO -->
 <section class="max-w-7xl mx-auto px-2 md:px-3 mt-2">
 <div class="bg-gradient-to-r from-[#131921] to-[#37475A] text-white rounded-lg p-5 md:p-8 flex flex-col md:flex-row justify-between gap-4">
-<div><p class="text-[#FF9900] font-bold text-sm">WORLDCOUPON360 EXCLUSIVE</p><h1 class="text-3xl md:text-5xl font-black leading-tight mt-1">Shop Like Amazon.<br>Save Like Coupon King.</h1><p class="text-gray-300 mt-2 text-sm md:text-base">Geyser • Kettle • Fan + Jio • Swiggy • Amazon • Flipkart - Anni okate chota.</p><div class="flex gap-2 mt-4 flex-wrap"><span class="bg-white text-black px-3 py-1 rounded-full text-xs font-bold">✅ COD Available</span><span class="bg-[#FF9900] text-black px-3 py-1 rounded-full text-xs font-bold">🚚 Free Delivery</span><span class="bg-green-500 px-3 py-1 rounded-full text-xs font-bold">⭐ 4.9 Rated</span></div></div>
+<div><p class="text-[#FF9900] font-bold text-sm">WORLDCOUPON360 EXCLUSIVE</p><h1 class="text-3xl md:text-5xl font-black leading-tight mt-1">Shop Like Amazon.<br>Save Like Coupon King.</h1><p class="text-gray-300 mt-2 text-sm md:text-base">Geyser • Kettle • Fan + Jio • Swiggy • Amazon • Flipkart - Anni okate chota.</p><div class="flex gap-2 mt-4 flex-wrap"><span class="bg-white text-black px-3 py-1 rounded-full text-xs font-bold">✅ Secure Online Payment</span><span class="bg-[#FF9900] text-black px-3 py-1 rounded-full text-xs font-bold">🚚 Free Delivery</span><span class="bg-green-500 px-3 py-1 rounded-full text-xs font-bold">⭐ 4.9 Rated</span></div></div>
 <div class="bg-white text-black rounded-lg p-4 w-full md:w-[340px]"><p class="text-xs font-bold text-red-600">BEST SELLER • DEAL OF THE DAY</p><p class="font-bold text-lg mt-1">Instant Geyser 3L - Fast Heating</p><p class="text-sm">⭐ 4.5 (1,243 ratings)</p><p class="mt-1"><span class="text-red-600 text-xs font-bold">-31%</span> <span class="text-2xl font-black">₹6,199</span> <span class="line-through text-gray-400 text-sm">₹8,999</span></p><button onclick="addToCart(101)" class="w-full bg-[#FFD814] py-2.5 rounded-full font-bold mt-3">Add to Cart</button><button onclick="buyNow(101)" class="w-full bg-[#FFA41C] py-2.5 rounded-full font-bold mt-2">Buy Now</button></div>
 </div>
 </section>
 
-<!-- 4 BOXES LIKE AMAZON HOMEPAGE -->
+<!-- 4 BOXES -->
 <section class="max-w-7xl mx-auto px-2 md:px-3 mt-3 grid grid-cols-2 lg:grid-cols-4 gap-3">
 <div class="bg-white p-4 rounded-lg"><h3 class="font-bold">Appliances under ₹1,000</h3><div class="text-5xl text-center my-3">🍵</div><p class="text-sm text-gray-600">Kettle • Bulb • Heater</p><a href="#shop" class="text-teal-700 text-sm">Shop now →</a></div>
 <div class="bg-white p-4 rounded-lg"><h3 class="font-bold">Recharge Offers</h3><div class="text-5xl text-center my-3">📱</div><p class="text-sm text-gray-600">Jio • Airtel • Vi • BSNL</p><a href="#coupons" class="text-teal-700 text-sm">See all offers →</a></div>
@@ -61,14 +62,14 @@
 <div class="bg-white p-4 rounded-lg"><h3 class="font-bold">Travel Deals</h3><div class="text-5xl text-center my-3">✈️</div><p class="text-sm text-gray-600">Flights • Trains • Cabs</p><a href="#coupons" class="text-teal-700 text-sm">See all offers →</a></div>
 </section>
 
-<!-- SHOP - AMAZON STYLE PRODUCT GRID -->
+<!-- SHOP -->
 <section id="shop" class="max-w-7xl mx-auto px-2 md:px-3 mt-5">
 <div class="bg-white p-3 md:p-4 rounded-lg"><div class="flex justify-between items-center"><h2 class="text-xl md:text-2xl font-bold">🛒 Shop - Home Appliances</h2><button onclick="openCart()" class="text-teal-700 font-bold text-sm">View Cart (<span id="cartCount2">0</span>) →</button></div>
 <div id="shopGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 mt-4"></div></div>
 </section>
 
-<!-- ALL PLATFORMS COUPONS - AMAZON STYLE -->
-<section id="coupons" class="max-w-7xl mx-auto px-2 md:px-3 mt-5 mb-6">
+<!-- COUPONS -->
+<section id="coupons" class="max-w-7xl mx-auto px-2 md:px-3 mt-5">
 <div class="bg-white p-3 md:p-4 rounded-lg">
 <div class="flex flex-wrap justify-between items-center gap-2"><h2 class="text-xl md:text-2xl font-bold">🎟️ All Platforms - Coupons & Deals <span id="count" class="text-[#FF9900]"></span></h2><select id="sortFilter" onchange="renderAll()" class="border rounded-full px-3 py-2 text-sm font-bold"><option value="popular">Best Sellers</option><option value="discount">Highest Discount</option><option value="new">Newest</option></select></div>
 <div class="flex gap-2 mt-3 overflow-x-auto no-scrollbar" id="catBar"></div>
@@ -77,53 +78,79 @@
 </div>
 </section>
 
-<!-- FOOTER LIKE AMAZON -->
-<div class="bg-[#37475A] text-white text-center py-3 text-sm cursor-pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</div>
-<footer class="bg-[#232F3E] text-white"><div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-4 gap-6 text-sm"><div><h3 class="font-bold">Get to Know Us</h3><p class="text-gray-300 mt-2">About • Careers • Blog</p></div><div><h3 class="font-bold">Shop With Us</h3><p class="text-gray-300 mt-2">Geyser • Kettle • Fan • Mixer • Heater • Bulb</p></div><div><h3 class="font-bold">Top Platforms</h3><p class="text-gray-300 mt-2">Jio • Airtel • Swiggy • Zomato • Amazon • Flipkart • Myntra</p></div><div><h3 class="font-bold">Let Us Help You</h3><p class="text-gray-300 mt-2">WhatsApp: 8247679346<br>Email: support@worldcoupon360.com<br><a href="/privacy-policy.html" class="underline">Privacy Policy</a> • <a href="/terms.html" class="underline">Terms</a></p></div></div><div class="border-t border-gray-600 text-center py-4 text-xs">© 2026 WorldCoupon360 • Made in Hyderabad, India 🇮🇳</div></footer>
+<!-- ABOUT / CONTACT / PRIVACY / TERMS -->
+<section id="about" class="max-w-7xl mx-auto px-2 md:px-3 mt-5"><div class="bg-white p-5 rounded-lg"><h2 class="text-2xl font-bold">About Us - WorldCoupon360</h2><p class="text-gray-600 mt-2 text-sm leading-relaxed">WorldCoupon360 is Hyderabad based shopping + coupons website. Manam Home Appliances direct ga ammutunnam - Geyser, Kettle, Fan, Mixer, Heater. Alage India lo top platforms - Amazon, Flipkart, Jio, Airtel, Swiggy, Zomato, MakeMyTrip lanti vatiki best coupons & deals ni okate chota chupisthunnam. Ma goal - prathi customer ki best price lo best product ivvadam. Secure Online Payment, Free Delivery in Hyderabad, 7 Days Return available.</p><p class="text-sm mt-2"><b>Owner:</b> Pradeep | <b>Location:</b> Mallapur, Hyderabad, Telangana</p></div></section>
+<section id="contact" class="max-w-7xl mx-auto px-2 md:px-3 mt-3"><div class="bg-white p-5 rounded-lg"><h2 class="text-2xl font-bold">Contact Us</h2><p class="text-gray-600 mt-2 text-sm">Order / Support kosam:</p><p class="text-sm mt-3 font-bold">📞 Phone / WhatsApp: 8247679346<br>📧 Email: support@worldcoupon360.com<br>📍 Address: Mallapur, Hyderabad, Telangana - 500076<br>🕐 Timing: 9 AM - 9 PM (All Days)</p></div></section>
+<section id="privacy" class="max-w-7xl mx-auto px-2 md:px-3 mt-3"><div class="bg-white p-5 rounded-lg"><h2 class="text-2xl font-bold">Privacy Policy</h2><p class="text-gray-600 mt-2 text-sm leading-relaxed">1. Mee peru, phone, address ni order delivery kosam matrame use chestham.<br>2. Mee data ni evariki ammamu, share cheyamu.<br>3. Payment Razorpay secure gateway dwara jaruguthundhi, manam mee card / UPI details chudamu / save cheyamu.<br>4. Cookies ni site ni better cheyadaniki matrame use chestham.<br>5. Data delete cheyalante support@worldcoupon360.com ki mail cheyandi.</p></div></section>
+<section id="terms" class="max-w-7xl mx-auto px-2 md:px-3 mt-3 mb-5"><div class="bg-white p-5 rounded-lg"><h2 class="text-2xl font-bold">Terms & Conditions</h2><p class="text-gray-600 mt-2 text-sm leading-relaxed">1. Prices & offers marochu, order time lo unna price ye final.<br>2. Payment online lone - UPI / Card / NetBanking via Razorpay.<br>3. Delivery: Hyderabad 1-2 days, vere cities 2-4 days.<br>4. Return: Product damaged / defective aithe 7 days lo return. Photo pampali.<br>5. Coupons - 3rd party sites offers ki manam responsible kadhu, avi aa site rules prakaram untayi.<br>6. Ee site ni use chesthe meeru ee terms ki agree ayinattu.</p></div></section>
 
-<!-- CART DRAWER AMAZON STYLE -->
+<!-- FOOTER -->
+<div class="bg-[#37475A] text-white text-center py-3 text-sm cursor-pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</div>
+<footer class="bg-[#232F3E] text-white"><div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-4 gap-6 text-sm"><div><h3 class="font-bold">Get to Know Us</h3><p class="text-gray-300 mt-2"><a href="#about" class="block">About Us</a><a href="#contact" class="block">Contact Us</a></p></div><div><h3 class="font-bold">Shop With Us</h3><p class="text-gray-300 mt-2">Geyser • Kettle • Fan • Mixer • Heater • Bulb</p></div><div><h3 class="font-bold">Top Platforms</h3><p class="text-gray-300 mt-2">Jio • Airtel • Swiggy • Zomato • Amazon • Flipkart • Myntra</p></div><div><h3 class="font-bold">Let Us Help You</h3><p class="text-gray-300 mt-2">Phone: 8247679346<br>Email: support@worldcoupon360.com<br><a href="#privacy" class="underline">Privacy Policy</a> • <a href="#terms" class="underline">Terms & Conditions</a></p></div></div><div class="border-t border-gray-600 text-center py-4 text-xs">© 2026 WorldCoupon360 • Made in Hyderabad, India 🇮🇳</div></footer>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal"><div class="bg-white rounded-2xl w-full max-w-sm p-6 relative">
+<button onclick="closeLogin()" class="absolute top-3 right-4 text-xl">✕</button>
+<h2 class="text-2xl font-black">Sign in</h2><p class="text-sm text-gray-500 mt-1">WorldCoupon360 Account</p>
+<div id="loginForm">
+<label class="text-sm font-bold mt-4 block">Your Name</label>
+<input id="loginName" placeholder="Ex: Pradeep" class="w-full border rounded-lg px-3 py-3 mt-1 outline-none">
+<label class="text-sm font-bold mt-3 block">Mobile Number</label>
+<input id="loginPhone" placeholder="10-digit Mobile" maxlength="10" class="w-full border rounded-lg px-3 py-3 mt-1 outline-none">
+<label class="text-sm font-bold mt-3 block">Email (Optional)</label>
+<input id="loginEmail" placeholder="you@gmail.com" class="w-full border rounded-lg px-3 py-3 mt-1 outline-none">
+<button onclick="doLogin()" class="w-full bg-[#FFD814] py-3 rounded-full font-bold mt-4">Continue / Login →</button>
+<p class="text-[11px] text-gray-500 text-center mt-3">By continuing, you agree to our Terms & Privacy Policy.</p>
+</div>
+<div id="loginSuccess" class="hidden text-center py-4"><p class="text-5xl">✅</p><p class="font-bold mt-2">Welcome, <span id="loginUserName"></span>!</p><p class="text-sm text-gray-500">Login Successful</p><button onclick="doLogout()" class="bg-black text-white px-5 py-2 rounded-full font-bold mt-4">Logout</button></div>
+</div></div>
+
+<!-- CART DRAWER - DIRECT ONLINE PAYMENT ONLY -->
 <div id="cartDrawer" class="hidden fixed top-0 right-0 w-full max-w-md h-full bg-white shadow-2xl z-[200] p-5 overflow-y-auto">
 <div class="flex justify-between"><h2 class="text-xl font-bold">🛒 Shopping Cart</h2><button onclick="closeCart()" class="text-2xl">✕</button></div>
+<div id="loginWarning" class="hidden bg-yellow-100 p-3 rounded-lg text-sm font-bold mt-3">⚠️ Please Login first to Checkout. <button onclick="openLogin()" class="text-blue-600 underline">Login Now →</button></div>
 <div id="cartItems" class="mt-4 space-y-3"></div>
 <div class="mt-5 border-t pt-3"><p class="flex justify-between text-sm"><span>Delivery</span><span class="text-green-600 font-bold">FREE</span></p><p class="flex justify-between font-bold text-lg mt-1"><span>Subtotal:</span><span id="cartTotal" class="text-red-600">₹0</span></p>
-<a href="https://rzp.io/rzp/YOUR_LIVE_LINK_HERE" target="_blank" class="block text-center bg-[#FFD814] py-3 rounded-full font-bold mt-3">Proceed to Buy - Pay Online →</a>
-<a href="https://wa.me/918247679346?text=Hi%20I%20want%20to%20order%20COD" target="_blank" class="block text-center bg-black text-white py-3 rounded-full font-bold mt-2">Order on WhatsApp - COD →</a></div>
+<p class="text-xs text-gray-500 mt-2 text-center">🔒 100% Secure Payment via Razorpay • UPI • Card • NetBanking</p>
+<button onclick="checkout()" class="block w-full text-center bg-[#FFD814] py-3 rounded-full font-bold mt-3">Proceed to Buy - Pay Online →</button>
+<p class="text-[11px] text-gray-400 text-center mt-2">No WhatsApp Order. Direct Online Payment Only.</p>
+</div>
 </div>
 <div id="toast" class="toast">Added!</div>
 
 <script>
+const RAZORPAY_LINK="https://rzp.io/rzp/YOUR_LIVE_LINK_HERE";
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+// LOGIN
+function openLogin(){document.getElementById('loginModal').classList.add('open');let u=localStorage.getItem('wc_user');if(u){showLoginSuccess(JSON.parse(u).name);}else{document.getElementById('loginForm').classList.remove('hidden');document.getElementById('loginSuccess').classList.add('hidden');}}
+function closeLogin(){document.getElementById('loginModal').classList.remove('open');}
+function showLoginSuccess(name){document.getElementById('loginForm').classList.add('hidden');document.getElementById('loginSuccess').classList.remove('hidden');document.getElementById('loginUserName').innerText=name;document.getElementById('helloUser').innerText=name;}
+function doLogin(){let name=document.getElementById('loginName').value.trim();let phone=document.getElementById('loginPhone').value.trim();let email=document.getElementById('loginEmail').value.trim();if(!name){alert("Please enter your Name");return;}if(phone.length!==10){alert("Please enter 10-digit Mobile Number");return;}localStorage.setItem('wc_user',JSON.stringify({name,phone,email}));document.getElementById('helloUser').innerText=name;showLoginSuccess(name);showToast("✅ Welcome "+name+"! Login Successful");setTimeout(closeLogin,1200);updateCartWarning();}
+function doLogout(){localStorage.removeItem('wc_user');document.getElementById('helloUser').innerText="Sign in";document.getElementById('loginForm').classList.remove('hidden');document.getElementById('loginSuccess').classList.add('hidden');showToast("Logged out");updateCartWarning();}
+function isLoggedIn(){return !!localStorage.getItem('wc_user');}
+function updateCartWarning(){document.getElementById('loginWarning').classList.toggle('hidden',isLoggedIn());}
+function checkout(){if(!isLoggedIn()){openLogin();showToast("⚠️ Please Login first");return;}if(cart.length===0){alert("Cart empty!");return;}window.open(RAZORPAY_LINK,"_blank");}
+window.onload=function(){let u=localStorage.getItem('wc_user');if(u){document.getElementById('helloUser').innerText=JSON.parse(u).name;}};
+function showToast(msg){let t=document.getElementById('toast');t.innerText=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2000);}
+
 const PRODUCTS=[
-{id:101,name:"Instant Geyser 3L - Fast Heating, Auto Cut-off",price:6199,oldPrice:8999,rating:4.5,reviews:1243,img:"🔥",desc:"Instant hot water in 5 sec. Perfect for bathroom & kitchen.",features:["3L Instant Heating","Auto Cut-off","5 Year Warranty"]},
-{id:102,name:"Electric Kettle 1.5L Stainless Steel",price:999,oldPrice:1499,rating:4.4,reviews:856,img:"🍵",desc:"Boils water in 3 min. Steel body, auto shut-off.",features:["1.5L Capacity","Auto Shut-off","1 Year Warranty"]},
-{id:103,name:"Ceiling Fan 1200mm High Speed",price:2199,oldPrice:3299,rating:4.6,reviews:2104,img:"🌀",desc:"High air delivery, silent, energy saving.",features:["1200mm Sweep","Silent Motor","2 Year Warranty"]},
-{id:104,name:"Mixer Grinder 750W - 3 Jars",price:2899,oldPrice:4499,rating:4.3,reviews:987,img:"🥤",desc:"Powerful 750W motor for grinding & juicing.",features:["750W Motor","3 Steel Jars","5 Year Warranty"]},
-{id:105,name:"Room Heater 2000W - Fast Heating",price:1799,oldPrice:2799,rating:4.2,reviews:543,img:"♨️",desc:"Instant room heating in winter.",features:["2000W Fast Heat","Safety Cut-off","1 Year Warranty"]},
-{id:106,name:"LED Smart Bulb 12W Pack of 4 WiFi",price:799,oldPrice:1299,rating:4.5,reviews:1532,img:"💡",desc:"Control with phone / Alexa. 16M colors.",features:["WiFi Control","16M Colors","2 Year Warranty"]},
+{id:101,name:"Instant Geyser 3L - Fast Heating, Auto Cut-off",price:6199,oldPrice:8999,rating:4.5,reviews:1243,img:"https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=600&q=80",desc:"Instant hot water in 5 sec. Perfect for bathroom & kitchen.",features:["3L Instant Heating","Auto Cut-off","5 Year Warranty"]},
+{id:102,name:"Electric Kettle 1.5L Stainless Steel",price:999,oldPrice:1499,rating:4.4,reviews:856,img:"https://images.unsplash.com/photo-1594213114663-d94db9b17125?auto=format&fit=crop&w=600&q=80",desc:"Boils water in 3 min. Steel body, auto shut-off.",features:["1.5L Capacity","Auto Shut-off","1 Year Warranty"]},
+{id:103,name:"Ceiling Fan 1200mm High Speed",price:2199,oldPrice:3299,rating:4.6,reviews:2104,img:"https://images.unsplash.com/photo-1565128939093-d9d0b0b0b0b0?auto=format&fit=crop&w=600&q=80",desc:"High air delivery, silent, energy saving.",features:["1200mm Sweep","Silent Motor","2 Year Warranty"]},
+{id:104,name:"Mixer Grinder 750W - 3 Jars",price:2899,oldPrice:4499,rating:4.3,reviews:987,img:"https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80",desc:"Powerful 750W motor for grinding & juicing.",features:["750W Motor","3 Steel Jars","5 Year Warranty"]},
+{id:105,name:"Room Heater 2000W - Fast Heating",price:1799,oldPrice:2799,rating:4.2,reviews:543,img:"https://images.unsplash.com/photo-1585771724684-2117d6e1f9d2?auto=format&fit=crop&w=600&q=80",desc:"Instant room heating in winter.",features:["2000W Fast Heat","Safety Cut-off","1 Year Warranty"]},
+{id:106,name:"LED Smart Bulb 12W Pack of 4 WiFi",price:799,oldPrice:1299,rating:4.5,reviews:1532,img:"https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=600&q=80",desc:"Control with phone / Alexa. 16M colors.",features:["WiFi Control","16M Colors","2 Year Warranty"]},
 ];
 let cart=[];
-function renderShop(){
-document.getElementById('shopGrid').innerHTML=PRODUCTS.map(p=>`
-<div class="card bg-white border rounded-lg p-3">
-<div class="text-6xl text-center py-4 bg-gray-50 rounded-lg">${p.img}</div>
-<h3 class="font-bold text-sm mt-2 leading-snug">${p.name}</h3>
-<p class="text-xs text-orange-600 font-bold mt-1">⭐ ${p.rating} | ${p.reviews} ratings</p>
-<p class="text-xs text-gray-500 mt-1">${p.desc}</p>
-<ul class="text-[11px] text-gray-700 mt-1">${p.features.map(f=>`<li>✅ ${f}</li>`).join('')}</ul>
-<p class="mt-2"><span class="text-red-600 text-xs font-bold">-${Math.round((1-p.price/p.oldPrice)*100)}%</span> <span class="text-xl font-black">₹${p.price}</span> <span class="line-through text-gray-400 text-xs">₹${p.oldPrice}</span></p>
-<p class="text-[11px] text-gray-500">FREE delivery • <span class="text-green-600 font-bold">In stock</span></p>
-<button onclick="addToCart(${p.id})" class="w-full bg-[#FFD814] py-2 rounded-full font-bold text-sm mt-2">Add to Cart</button>
-<button onclick="buyNow(${p.id})" class="w-full bg-[#FFA41C] py-2 rounded-full font-bold text-sm mt-2">Buy Now</button>
-</div>`).join('');
-}
+function renderShop(){document.getElementById('shopGrid').innerHTML=PRODUCTS.map(p=>`<div class="card bg-white border rounded-lg p-3"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/600x400?text=Product'" class="w-full h-48 object-cover rounded-lg" alt="${p.name}"><h3 class="font-bold text-sm mt-2 leading-snug">${p.name}</h3><p class="text-xs text-orange-600 font-bold mt-1">⭐ ${p.rating} | ${p.reviews} ratings</p><p class="text-xs text-gray-500 mt-1">${p.desc}</p><ul class="text-[11px] text-gray-700 mt-1">${p.features.map(f=>`<li>✅ ${f}</li>`).join('')}</ul><p class="mt-2"><span class="text-red-600 text-xs font-bold">-${Math.round((1-p.price/p.oldPrice)*100)}%</span> <span class="text-xl font-black">₹${p.price}</span> <span class="line-through text-gray-400 text-xs">₹${p.oldPrice}</span></p><p class="text-[11px] text-gray-500">FREE delivery • <span class="text-green-600 font-bold">In stock</span></p><button onclick="addToCart(${p.id})" class="w-full bg-[#FFD814] py-2 rounded-full font-bold text-sm mt-2">Add to Cart</button><button onclick="buyNow(${p.id})" class="w-full bg-[#FFA41C] py-2 rounded-full font-bold text-sm mt-2">Buy Now</button></div>`).join('');}
 function updateCartCount(){let c=cart.reduce((s,p)=>s+p.qty,0);document.getElementById('cartCount').innerText=c;document.getElementById('cartCount2').innerText=c;}
-function addToCart(id){let p=PRODUCTS.find(x=>x.id===id);let f=cart.find(x=>x.id===id);if(f){f.qty++}else{cart.push({...p,qty:1})}updateCartCount();let t=document.getElementById('toast');t.innerText="✅ "+p.name+" Added";t.style.display='block';setTimeout(()=>t.style.display='none',2000);}
+function addToCart(id){let p=PRODUCTS.find(x=>x.id===id);let f=cart.find(x=>x.id===id);if(f){f.qty++}else{cart.push({...p,qty:1})}updateCartCount();showToast("✅ "+p.name+" Added");}
 function buyNow(id){addToCart(id);openCart();}
 function removeFromCart(id){cart=cart.filter(p=>p.id!==id);updateCartCount();openCart();}
 function changeQty(id,ch){let p=cart.find(x=>x.id===id);if(!p)return;p.qty+=ch;if(p.qty<=0){removeFromCart(id);return}updateCartCount();openCart();}
 function clearCart(){cart=[];updateCartCount();openCart();}
-function openCart(){document.getElementById('cartDrawer').classList.remove('hidden');let total=cart.reduce((s,p)=>s+p.price*p.qty,0);document.getElementById('cartTotal').innerText="₹"+total;document.getElementById('cartItems').innerHTML=cart.length?cart.map(p=>`<div class="flex justify-between bg-gray-50 p-3 rounded-lg"><div class="flex-1"><p class="font-bold text-sm">${p.img} ${p.name}</p><div class="flex items-center gap-2 mt-2"><button onclick="changeQty(${p.id},-1)" class="bg-white border px-3 py-1 rounded-full font-bold">-</button><span class="font-bold">${p.qty}</span><button onclick="changeQty(${p.id},1)" class="bg-white border px-3 py-1 rounded-full font-bold">+</button><span class="text-xs text-gray-500">x ₹${p.price}</span></div></div><div class="text-right"><b>₹${p.price*p.qty}</b><br><button onclick="removeFromCart(${p.id})" class="text-red-600 text-xs font-bold">❌ Remove</button></div></div>`).join('')+'<button onclick="clearCart()" class="w-full text-red-600 text-sm font-bold mt-2">🗑️ Clear All</button>':'<p class="text-gray-500">Your cart is empty.</p>';}
+function openCart(){document.getElementById('cartDrawer').classList.remove('hidden');updateCartWarning();let total=cart.reduce((s,p)=>s+p.price*p.qty,0);document.getElementById('cartTotal').innerText="₹"+total;document.getElementById('cartItems').innerHTML=cart.length?cart.map(p=>`<div class="flex justify-between bg-gray-50 p-3 rounded-lg"><div class="flex-1"><p class="font-bold text-sm">${p.name}</p><div class="flex items-center gap-2 mt-2"><button onclick="changeQty(${p.id},-1)" class="bg-white border px-3 py-1 rounded-full font-bold">-</button><span class="font-bold">${p.qty}</span><button onclick="changeQty(${p.id},1)" class="bg-white border px-3 py-1 rounded-full font-bold">+</button><span class="text-xs text-gray-500">x ₹${p.price}</span></div></div><div class="text-right"><b>₹${p.price*p.qty}</b><br><button onclick="removeFromCart(${p.id})" class="text-red-600 text-xs font-bold">❌ Remove</button></div></div>`).join('')+'<button onclick="clearCart()" class="w-full text-red-600 text-sm font-bold mt-2">🗑️ Clear All</button>':'<p class="text-gray-500">Your cart is empty.</p>';}
 function closeCart(){document.getElementById('cartDrawer').classList.add('hidden');}
-
 const CATS=["All","Appliances","Recharge & Broadband","Bank & UPI","Food & Groceries","Travel & Flights","Shopping & Malls","Beauty & Health"];
 const DEALS=[
 {id:1,store:"Jio",link:"https://www.jio.com/",title:"Jio Recharge - Best Plans Today",discount:50,cat:"Recharge & Broadband",tag:"🔥 HOT",desc:"Check MyJio App for Best Offers",popular:98,emoji:"📱",color:"bg-blue-600"},
@@ -142,26 +169,7 @@ const DEALS=[
 let activeCat="All";
 function renderCats(){document.getElementById('catBar').innerHTML=CATS.map(c=>`<button onclick="setCat('${c}')" class="whitespace-nowrap border px-4 py-1.5 rounded-full text-sm font-bold ${activeCat===c?'bg-[#131921] text-white':'bg-white'}">${c}</button>`).join('');}
 function setCat(c){activeCat=c;renderCats();renderAll();}
-function renderAll(){
-renderShop();
-let q=(document.getElementById('searchInput').value||"").toLowerCase();
-let sort=document.getElementById('sortFilter').value;
-let list=DEALS.filter(d=>{
-let matchCat=activeCat==="All"||d.cat===activeCat||(activeCat==="Appliances"&&d.cat==="Shopping & Malls");
-let matchQ=!q||(d.store+" "+d.title+" "+d.cat).toLowerCase().includes(q);
-let matchShop=!q||PRODUCTS.some(p=>p.name.toLowerCase().includes(q)) ? true : matchQ;
-return matchCat&&(matchQ||PRODUCTS.some(p=>p.name.toLowerCase().includes(q)));
-});
-if(sort==="discount")list.sort((a,b)=>b.discount-a.discount);else if(sort==="new")list.sort((a,b)=>b.id-a.id);else list.sort((a,b)=>b.popular-a.popular);
-document.getElementById('count').innerText="("+list.length+")";
-document.getElementById('noResult').classList.toggle('hidden',list.length>0||PRODUCTS.some(p=>p.name.toLowerCase().includes(q)));
-document.getElementById('dealGrid').innerHTML=list.map(d=>`
-<div class="card bg-white border rounded-lg p-4">
-<div class="flex gap-3"><div class="${d.color} w-12 h-12 rounded-lg flex items-center justify-center text-2xl">${d.emoji}</div><div><p class="font-bold">${d.store}</p><p class="text-xs text-gray-500">${d.cat}</p><span class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-0.5 rounded-full">${d.tag}</span></div><div class="ml-auto text-right"><p class="text-2xl font-black text-red-600">${d.discount}%</p><p class="text-[10px] font-bold text-gray-400">OFF</p></div></div>
-<h3 class="font-bold text-sm mt-3">${d.title}</h3><p class="text-xs text-gray-500 mt-1">${d.desc}</p>
-<a href="${d.link}" target="_blank" class="block text-center bg-[#FFD814] py-2.5 rounded-full font-bold text-sm mt-3">Visit ${d.store} →</a>
-</div>`).join('');
-}
+function renderAll(){renderShop();let q=(document.getElementById('searchInput').value||"").toLowerCase();let sort=document.getElementById('sortFilter').value;let list=DEALS.filter(d=>{let matchCat=activeCat==="All"||d.cat===activeCat||(activeCat==="Appliances"&&d.cat==="Shopping & Malls");let matchQ=!q||(d.store+" "+d.title+" "+d.cat).toLowerCase().includes(q);return matchCat&&matchQ;});if(sort==="discount")list.sort((a,b)=>b.discount-a.discount);else if(sort==="new")list.sort((a,b)=>b.id-a.id);else list.sort((a,b)=>b.popular-a.popular);document.getElementById('count').innerText="("+list.length+")";document.getElementById('noResult').classList.toggle('hidden',list.length>0);document.getElementById('dealGrid').innerHTML=list.map(d=>`<div class="card bg-white border rounded-lg p-4"><div class="flex gap-3"><div class="${d.color} w-12 h-12 rounded-lg flex items-center justify-center text-2xl">${d.emoji}</div><div><p class="font-bold">${d.store}</p><p class="text-xs text-gray-500">${d.cat}</p><span class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-0.5 rounded-full">${d.tag}</span></div><div class="ml-auto text-right"><p class="text-2xl font-black text-red-600">${d.discount}%</p><p class="text-[10px] font-bold text-gray-400">OFF</p></div></div><h3 class="font-bold text-sm mt-3">${d.title}</h3><p class="text-xs text-gray-500 mt-1">${d.desc}</p><a href="${d.link}" target="_blank" class="block text-center bg-[#FFD814] py-2.5 rounded-full font-bold text-sm mt-3">Visit ${d.store} →</a></div>`).join('');}
 renderCats();renderAll();
 </script>
 </body>
