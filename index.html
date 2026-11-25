@@ -180,7 +180,7 @@ let sort=document.getElementById('sortFilter').value;
 let list=DEALS.filter(d=>{
 let matchCat=activeCat==="All"||d.cat===activeCat;
 let matchCountry=country==="All"||d.country===country;
-let matchQ=!q|| (d.store+" "+d.title+" "+d.code+" "+d.cat).toLowerCase().includes(q);
+let matchQ=!q|| (d.store+" "+d.title+" "+d.cat).toLowerCase().includes(q);
 return matchCat&&matchCountry&&matchQ;
 });
 if(sort==="discount") list.sort((a,b)=>b.discount-a.discount);
